@@ -1,3 +1,4 @@
+import React, { useRef } from "react";
 import { Button } from "@/components/ui/button";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
@@ -5,8 +6,10 @@ import {
   Unauthenticated,
 } from "convex/react";
 import Board from "./components/Board";
+import Modal from "./components/Modal"
 
 export default function App() {
+ 
   return (
     <main>
       <h1>
@@ -27,10 +30,17 @@ export default function App() {
 }
 
 function SignedIn() {
+  const dialogRef = useRef(null);
+
+  const updateDialog = () => {
+    dialogRef.current.showModal();
+  }
+
   return (
     <>
       <UserButton />
-      <Board />
+      <Board updateDialog={updateDialog} />
+      <Modal dialogRef={dialogRef} />
     </>
   )
 }
