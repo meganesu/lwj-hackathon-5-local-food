@@ -3,11 +3,8 @@ import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
   Authenticated,
   Unauthenticated,
-  useMutation,
-  useQuery,
 } from "convex/react";
 import Board from "./components/Board";
-import { api } from "../convex/_generated/api";
 
 export default function App() {
   return (
@@ -32,6 +29,7 @@ export default function App() {
 function SignedIn() {
   return (
     <>
+      <UserButton />
       <Board />
     </>
   )
