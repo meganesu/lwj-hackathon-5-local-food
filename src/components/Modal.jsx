@@ -1,5 +1,5 @@
 
-const Modal = ({ dialogRef }) => {
+const Modal = ({ dialogRef, activeRestaurant }) => {
   const handleClose = () => {
     dialogRef.current.close();
   }
@@ -16,7 +16,8 @@ const Modal = ({ dialogRef }) => {
       >
         X
       </button>
-      <p>PUT SOME THINGS IN HERE</p>
+      <h2>{activeRestaurant?.restaurantName}</h2>
+      <p>{activeRestaurant?.address}</p>
       <button onClick={handleCheckIn}>Check in</button>
     </dialog>
   )

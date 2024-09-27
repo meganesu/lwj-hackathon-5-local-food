@@ -1,4 +1,4 @@
-import React, { useRef } from "react";
+import React, { useRef, useState } from "react";
 import { Button } from "@/components/ui/button";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
@@ -31,8 +31,10 @@ export default function App() {
 
 function SignedIn() {
   const dialogRef = useRef(null);
+  const [activeRestaurant, setActiveRestaurant] = useState(null)
 
-  const updateDialog = () => {
+  const updateDialog = (restaurantDetails) => {
+    setActiveRestaurant(restaurantDetails);
     dialogRef.current.showModal();
   }
 
@@ -40,7 +42,7 @@ function SignedIn() {
     <>
       <UserButton />
       <Board updateDialog={updateDialog} />
-      <Modal dialogRef={dialogRef} />
+      <Modal dialogRef={dialogRef} activeRestaurant={activeRestaurant} />
     </>
   )
 }

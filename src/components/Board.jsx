@@ -19,7 +19,7 @@ const Board = ({ updateDialog }) => {
             <tr>
               { row.map(restaurant => (
                 <td>
-                  <button onClick={updateDialog}>
+                  <button onClick={() => {updateDialog(restaurant)}}>
                     {restaurant.restaurantName}
                   </button>
                 </td>
