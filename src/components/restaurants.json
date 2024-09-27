@@ -1,0 +1,127 @@
+[
+  {
+    "restaurantName": "The Salad Stop",
+    "address": "1213 Madison Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "The Gourmet Grill",
+    "address": "1617 Amsterdam Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Ocean's Catch",
+    "address": "789 Park Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Taco Haven",
+    "address": "4849 5th Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "The Vegan Table",
+    "address": "456 5th Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Golden Chopsticks",
+    "address": "1011 Lexington Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Urban Eats",
+    "address": "123 Broadway, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Pizza Palace",
+    "address": "1617 Amsterdam Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Sushi Sensation",
+    "address": "3637 Lexington Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Sizzling Steakhouse",
+    "address": "1213 Madison Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "The Green Garden",
+    "address": "1213 Madison Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Steak & Barrel",
+    "address": "4243 2nd Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Café Delight",
+    "address": "1415 Columbus Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Brunch & Bites",
+    "address": "4243 2nd Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "BBQ Bliss",
+    "address": "3637 Lexington Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Mediterranean Morsels",
+    "address": "4849 5th Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "The Cozy Nook",
+    "address": "5253 7th Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "The Spicy Fork",
+    "address": "1415 Columbus Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Noodle Nirvana",
+    "address": "3233 10th Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Fried & True",
+    "address": "3637 Lexington Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Curry Corner",
+    "address": "1011 Lexington Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "The Deli Den",
+    "address": "1011 Lexington Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Dim Sum Dreams",
+    "address": "3839 3rd Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Burger Joint",
+    "address": "5051 6th Ave, New York, NY",
+    "visited": false
+  },
+  {
+    "restaurantName": "Pasta Paradise",
+    "address": "4849 5th Ave, New York, NY",
+    "visited": false
+  }
+]
