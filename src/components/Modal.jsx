@@ -1,3 +1,4 @@
+import "./Modal.css"
 
 const Modal = ({ dialogRef, activeRestaurant }) => {
   const handleClose = () => {
@@ -11,6 +12,7 @@ const Modal = ({ dialogRef, activeRestaurant }) => {
   return (
     <dialog ref={dialogRef}>
       <button
+        id="closeButton"
         onClick={handleClose}
         aria-label="Close modal"
       >
@@ -18,7 +20,12 @@ const Modal = ({ dialogRef, activeRestaurant }) => {
       </button>
       <h2>{activeRestaurant?.restaurantName}</h2>
       <p>{activeRestaurant?.address}</p>
-      <button onClick={handleCheckIn}>Check in</button>
+      <button
+        id="checkInButton"
+        onClick={handleCheckIn}
+      >
+        Check in
+      </button>
     </dialog>
   )
 }

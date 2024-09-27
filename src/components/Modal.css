@@ -1,0 +1,13 @@
+#closeButton {
+  display: block;
+  margin: 0 0 0 auto;
+}
+
+#checkInButton {
+  display: block;
+  margin: 0 auto;
+}
+
+dialog::backdrop {
+  background-color: rgba(0,0,0,0.7)
+}
