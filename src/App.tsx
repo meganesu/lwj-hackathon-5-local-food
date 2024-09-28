@@ -1,10 +1,13 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
   Authenticated,
   Unauthenticated,
+  useQuery,
+  useMutation,
 } from "convex/react";
+import { api } from "../convex/_generated/api";
 import Board from "./components/Board";
 import Modal from "./components/Modal";
 import restaurantList from "./restaurants.json"
@@ -30,23 +33,60 @@ export default function App() {
   );
 }
 
+const LoadingPlaceholder = () => {
+  return (
+    <p>Loading board...</p>
+  )
+}
+
 function SignedIn() {
   const dialogRef = useRef(null);
-  const [restaurants, setRestaurants] = useState(restaurantList)
   const [activeRestaurant, setActiveRestaurant] = useState(null)
+  const createBoardForCurrentUser = useMutation(api.boards.createBoardForCurrentUser)
+  
+  // check if the current user has an existing board
+  // if they don't, create one for them
+  const board = useQuery(api.boards.getBoardForCurrentUser)
+  console.log("board", board)
+  console.log("board.restaurants", board?.restaurants)
 
+  const [restaurants, setRestaurants] = useState(board?.restaurants)
+
+  // Create a new board if the user doesn't have one in the database yet
+  useEffect(() => {
+    const createBoard = async () => {
+      if (board === null) {
+        await createBoardForCurrentUser({ restaurants: restaurantList })
+      }
+    }
+
+    createBoard()
+      .catch(error => console.log("ERROR:", error))
+
+  })
+
+  // Update the restaurants in state based on the board,
+  // to trigger a rerender when the board changes
+  useEffect(() => {
+    setRestaurants(board?.restaurants)
+  }, [board])
+
+  console.log("restaurants before early return", restaurants)
+  
+  if (!board || !restaurants) {
+    return <LoadingPlaceholder />
+  }
+  
   const updateDialog = (restaurantDetails) => {
     setActiveRestaurant(restaurantDetails);
     dialogRef.current.showModal();
   }
-
 
   const handleCheckIn = () => {
     // Create the new restaurants state object
     const newRestaurants = [...restaurants]
     const currentIndex = activeRestaurant.index
     newRestaurants[currentIndex].visited = true
-    console.log("new restaurants", newRestaurants)
 
     setRestaurants(newRestaurants)
     
