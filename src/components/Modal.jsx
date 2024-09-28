@@ -1,13 +1,10 @@
 import "./Modal.css"
 
-const Modal = ({ dialogRef, activeRestaurant }) => {
+const Modal = ({ dialogRef, activeRestaurant, handleCheckIn }) => {
   const handleClose = () => {
     dialogRef.current.close();
   }
 
-  const handleCheckIn = () => {
-    dialogRef.current.close();
-  }
 
   return (
     <dialog ref={dialogRef}>
@@ -20,12 +17,19 @@ const Modal = ({ dialogRef, activeRestaurant }) => {
       </button>
       <h2>{activeRestaurant?.restaurantName}</h2>
       <p>{activeRestaurant?.address}</p>
-      <button
-        id="checkInButton"
-        onClick={handleCheckIn}
-      >
-        Check in
-      </button>
+      {
+        !activeRestaurant?.visited ? (
+          <button
+            id="checkInButton"
+            onClick={handleCheckIn}
+          >
+            Check in
+          </button>
+        )
+        : (
+          <p>You've already visited this restaurant! Well done!</p>
+        )
+      }
     </dialog>
   )
 }

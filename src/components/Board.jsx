@@ -1,7 +1,6 @@
-import restaurantList from "./restaurants.json"
 import "./Board.css"
 
-const Board = ({ updateDialog }) => {
+const Board = ({ updateDialog, restaurantList }) => {
   console.log(restaurantList)
 
   const restaurantList2D = []
@@ -11,6 +10,7 @@ const Board = ({ updateDialog }) => {
   }
   console.log(restaurantList2D)
 
+
   return (
     <table>
       {
@@ -19,7 +19,9 @@ const Board = ({ updateDialog }) => {
             <tr>
               { row.map(restaurant => (
                 <td>
-                  <button onClick={() => {updateDialog(restaurant)}}>
+                  <button
+                    onClick={() => {updateDialog(restaurant)}}
+                  >
                     {restaurant.restaurantName}
                   </button>
                 </td>

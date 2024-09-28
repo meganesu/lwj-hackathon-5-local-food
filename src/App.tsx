@@ -6,7 +6,8 @@ import {
   Unauthenticated,
 } from "convex/react";
 import Board from "./components/Board";
-import Modal from "./components/Modal"
+import Modal from "./components/Modal";
+import restaurantList from "./restaurants.json"
 
 export default function App() {
  
@@ -31,6 +32,7 @@ export default function App() {
 
 function SignedIn() {
   const dialogRef = useRef(null);
+  const [restaurants, setRestaurants] = useState(restaurantList)
   const [activeRestaurant, setActiveRestaurant] = useState(null)
 
   const updateDialog = (restaurantDetails) => {
@@ -38,11 +40,28 @@ function SignedIn() {
     dialogRef.current.showModal();
   }
 
+
+  const handleCheckIn = () => {
+    // Create the new restaurants state object
+    const newRestaurants = [...restaurants]
+    const currentIndex = activeRestaurant.index
+    newRestaurants[currentIndex].visited = true
+    console.log("new restaurants", newRestaurants)
+
+    setRestaurants(newRestaurants)
+    
+    dialogRef.current.close();
+  }
+
   return (
     <>
       <UserButton />
-      <Board updateDialog={updateDialog} />
-      <Modal dialogRef={dialogRef} activeRestaurant={activeRestaurant} />
+      <Board updateDialog={updateDialog} restaurantList={restaurants} />
+      <Modal
+        dialogRef={dialogRef}
+        activeRestaurant={activeRestaurant}
+        handleCheckIn={handleCheckIn}
+      />
     </>
   )
 }
