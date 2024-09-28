@@ -20,7 +20,9 @@ const Board = ({ updateDialog, restaurantList }) => {
               { row.map(restaurant => (
                 <td>
                   <button
+                    className={restaurant.visited && "visited"}
                     onClick={() => {updateDialog(restaurant)}}
+                    aria-label={`${restaurant.restaurantName}, ${restaurant.visited ? 'visited' : 'not visited'}`}
                   >
                     {restaurant.restaurantName}
                   </button>

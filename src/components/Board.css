@@ -1,3 +1,13 @@
 td button {
   width: 100%;
 }
+
+td button.visited {
+  text-decoration: line-through;
+  background-color: black;
+  color: white;
+}
+
+td button.visited:hover {
+  background-color: #444;
+}
