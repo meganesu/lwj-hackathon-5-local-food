@@ -46,3 +46,25 @@ export const createBoardForCurrentUser = mutation({
     return newBoardId
   }
 })
+
+export const updateRestaurantsForCurrentUser = mutation({
+  args: { 
+    restaurants: v.array(v.object({
+      restaurantName: v.string(),
+      address: v.string(),
+      visited: v.boolean(),
+      index: v.number()
+    })),
+    boardId: v.id("boards"),
+  },
+  handler: async (ctx, args) => {
+    const identity = await ctx.auth.getUserIdentity()
+    if (identity === null) {
+      throw new Error("Not authenticated")
+    }
+
+    const boardId = args.boardId
+
+    await ctx.db.patch(boardId, {restaurants: args.restaurants})
+  }
+})

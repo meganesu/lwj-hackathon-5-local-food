@@ -43,7 +43,8 @@ function SignedIn() {
   const dialogRef = useRef(null);
   const [activeRestaurant, setActiveRestaurant] = useState(null)
   const createBoardForCurrentUser = useMutation(api.boards.createBoardForCurrentUser)
-  
+  const updateRestaurantsForCurrentUser = useMutation(api.boards.updateRestaurantsForCurrentUser)
+
   // check if the current user has an existing board
   // if they don't, create one for them
   const board = useQuery(api.boards.getBoardForCurrentUser)
@@ -62,12 +63,12 @@ function SignedIn() {
 
     createBoard()
       .catch(error => console.log("ERROR:", error))
-
   })
 
   // Update the restaurants in state based on the board,
   // to trigger a rerender when the board changes
   useEffect(() => {
+    console.log("board", board?._id)
     setRestaurants(board?.restaurants)
   }, [board])
 
@@ -82,14 +83,20 @@ function SignedIn() {
     dialogRef.current.showModal();
   }
 
-  const handleCheckIn = () => {
+  const handleCheckIn = async () => {
     // Create the new restaurants state object
     const newRestaurants = [...restaurants]
     const currentIndex = activeRestaurant.index
     newRestaurants[currentIndex].visited = true
 
     setRestaurants(newRestaurants)
-    
+
+    // call a Convex function to update the board in the database
+    await updateRestaurantsForCurrentUser({
+      boardId: board._id,
+      restaurants: newRestaurants,
+    })
+
     dialogRef.current.close();
   }
 

@@ -5,7 +5,6 @@ const Modal = ({ dialogRef, activeRestaurant, handleCheckIn }) => {
     dialogRef.current.close();
   }
 
-
   return (
     <dialog ref={dialogRef}>
       <button
