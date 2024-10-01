@@ -1,22 +1,34 @@
-# Convex + TypeScript + ESLint + Vite + React + Clerk + Tailwind + shadcn/ui
+# Bingo Bites
 
-This template provides a minimal setup to get Convex working, with TypeScript,
-ESLint and React using [Vite](https://vitejs.dev/). It uses [Clerk](https://clerk.dev/) for user authentication.
+Welcome to Bingo Bites!
 
-Start by editing `convex/myFunctions.ts` and interact with your React app.
+This app was created as part of the [Learn with Jason Web Dev Challenge Hackathon #5](https://www.learnwithjason.dev/blog/web-dev-challenge-s1e5-food-scene-hackathon).
 
-See Convex docs at https://docs.convex.dev/home
+## Goal
 
-## Setting up
+Tired of going to the same old restaurants again and again? Want to expand your culinary horizons while supporting local businesses? Try Bingo Bites!
 
-```
-npm create convex@latest -t react-vite-clerk-shadcn
-```
+Bingo Bites is a bingo-style game where each square on your board has the name of a different restaurant in your area. When you visit a restaurant on your board, you can check it off. Once you get a bingo, you can take your board into a participating restaurant and show it to the cashier to  to earn a discount or free treat.
 
-Then:
+## How To Test
 
-1. Follow steps 1 to 3 in the [Clerk onboarding guide](https://docs.convex.dev/auth/clerk#get-started)
-2. Paste the Issuer URL as `CLERK_JWT_ISSUER_DOMAIN` to your dev deployment environment variable settings on the Convex dashboard (see [docs](https://docs.convex.dev/auth/clerk#configuring-dev-and-prod-instances))
-3. Paste your publishable key as `VITE_CLERK_PUBLISHABLE_KEY="<your publishable key>"` to the `.env.local` file in this directory.
+- Create a new account. A bingo board will be generated for you.
+- Click on a square to see the details for that restaurant.
+- Once you get a bingo, you can take your board into a participating restaurant to redeem your prize! (Or at least, that's how it would work if this were a real app and not just a hackathon project.)
 
-If you want to sync Clerk user data via webhooks, check out this [example repo](https://github.com/thomasballinger/convex-clerk-users-table/).
+## Tools I Used
+
+- Vite & React
+- Convex (for database)
+- Clerk (for auth)
+- pnpm (for package management)
+- Netlify (for hosting)
+- ChatGPT (to generate the home page text, & for debugging)
+
+## Plans for v2 and Beyond
+
+- Have the user enter their city, and populate their board with restaurants in their area. Show a map for where the restaurant is located.
+- When a user checks into a restaurant, they have to upload a photo of the meal they got. When users are browsing the restaurant details on their board, it shows them a list of photos that other patrons have uploaded.
+- Automatically detect when a user has gotten a bingo and add a new reward token to their account. Users can redeem reward tokens at a restaurant, which updates the number of rewards associated with their account.
+- Make boards a monthly contest. At the end of the month, automatically generate a new board for each user.
+- Add a monthly raffle to earn a bigger prize. Earn raffle tickets by getting bingos on your board, or get a blackout to earn bonus tickets!
