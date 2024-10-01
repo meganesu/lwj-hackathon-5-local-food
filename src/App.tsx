@@ -129,17 +129,19 @@ function Content() {
   }
 
   const updateDialog = (restaurantDetails: RestaurantDetails) => {
+    console.log("active restaurant", restaurantDetails)
     setActiveRestaurant(restaurantDetails);
     dialogRef?.current?.showModal();
   };
 
   const handleCheckIn = async () => {
+    if (activeRestaurant === null) {
+      throw new Error("Active restaurant is not defined");
+    }
+
     // Create the new restaurants state object
     const newRestaurants = [...restaurants];
     const currentIndex = activeRestaurant?.index;
-    if (currentIndex === undefined) {
-      throw new Error("Current Index is not defined");
-    }
     newRestaurants[currentIndex].visited = true;
 
     setRestaurants(newRestaurants);
