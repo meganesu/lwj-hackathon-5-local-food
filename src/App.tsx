@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { SignInButton, UserButton } from "@clerk/clerk-react";
 import {
@@ -11,6 +11,13 @@ import { api } from "../convex/_generated/api";
 import Board from "./components/Board";
 import Modal from "./components/Modal";
 import restaurantList from "./restaurants.json"
+
+type RestaurantDetails = {
+  restaurantName: string,
+  address: string,
+  visited: boolean,
+  index: number
+}
 
 export default function App() {
  
@@ -40,8 +47,8 @@ const LoadingPlaceholder = () => {
 }
 
 function SignedIn() {
-  const dialogRef = useRef(null);
-  const [activeRestaurant, setActiveRestaurant] = useState(null)
+  const dialogRef: React.RefObject<HTMLDialogElement> = useRef(null);
+  const [activeRestaurant, setActiveRestaurant] = useState<RestaurantDetails | null>(null)
   const createBoardForCurrentUser = useMutation(api.boards.createBoardForCurrentUser)
   const updateRestaurantsForCurrentUser = useMutation(api.boards.updateRestaurantsForCurrentUser)
 
@@ -79,15 +86,18 @@ function SignedIn() {
     return <LoadingPlaceholder />
   }
   
-  const updateDialog = (restaurantDetails) => {
+  const updateDialog = (restaurantDetails: RestaurantDetails) => {
     setActiveRestaurant(restaurantDetails);
-    dialogRef.current.showModal();
+    dialogRef?.current?.showModal();
   }
 
   const handleCheckIn = async () => {
     // Create the new restaurants state object
     const newRestaurants = [...restaurants]
-    const currentIndex = activeRestaurant.index
+    const currentIndex = activeRestaurant?.index
+    if (!currentIndex) {
+      throw new Error("Current Index is not defined")
+    }
     newRestaurants[currentIndex].visited = true
 
     setRestaurants(newRestaurants)
@@ -98,7 +108,7 @@ function SignedIn() {
       restaurants: newRestaurants,
     })
 
-    dialogRef.current.close();
+    dialogRef?.current?.close();
   }
 
   return (
