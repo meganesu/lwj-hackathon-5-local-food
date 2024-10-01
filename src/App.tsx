@@ -11,6 +11,7 @@ import { api } from "../convex/_generated/api";
 import Board from "./components/Board";
 import Modal from "./components/Modal";
 import restaurantList from "./restaurants.json";
+import "./App.css";
 
 type RestaurantDetails = {
   restaurantName: string;
@@ -21,7 +22,7 @@ type RestaurantDetails = {
 
 export default function App() {
   return (
-    <>
+    <div id="page-wrapper">
       <nav>
         <p>Bingo Bites</p>
         <Authenticated>
@@ -42,7 +43,7 @@ export default function App() {
         <Unauthenticated>
           <h1>Welcome to Bingo Bites!</h1>
           <h2>Your Restaurant Bingo Adventure Starts Here!</h2>
-          <p>🍔 ✅ 🏆</p>
+          <p className="emoji">🍔 ✅ 🏆</p>
           <p>
             Love dining out? Love rewards? Bingo Bites brings you the best of
             both worlds! Explore local restaurants, enjoy delicious meals, and
@@ -71,7 +72,10 @@ export default function App() {
           </p>
         </Unauthenticated>
       </main>
-    </>
+      <footer>
+        👩‍💻 This app was created as part of the Learn with Jason <a href="https://www.learnwithjason.dev/blog/web-dev-challenge-s1e5-food-scene-hackathon">Web Dev Challenge Hackathon #5.</a>
+      </footer>
+    </div>
   );
 }
 

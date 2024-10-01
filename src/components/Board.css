@@ -1,5 +1,18 @@
+table {
+  width: 100%;
+  height: 80vh;
+}
+
+td {
+  width: 20%;
+  max-width: 20vw;
+  max-height: 20vw;
+}
+
 td button {
   width: 100%;
+  height: 100%;
+  word-break: break-word;
 }
 
 td button.visited {

@@ -1,0 +1,49 @@
+body {
+  margin: 0;
+  font-family: Verdana, sans-serif;
+}
+
+#page-wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  background-color: maroon;
+  color: white;
+  padding: 10px 20px;
+}
+
+main {
+  max-width: 60ch;
+  margin: auto;
+  padding: 10px;
+
+  flex-grow: 1;
+}
+
+.emoji {
+  text-align: center;
+  font-size: 3rem;
+  margin: 0;
+}
+
+details {
+  padding-bottom: 10px;
+}
+
+footer {
+  background-color: maroon;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+}
+
+footer a {
+  color: white;
+}
