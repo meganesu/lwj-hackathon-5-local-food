@@ -24,7 +24,7 @@ export default function App() {
   return (
     <div id="page-wrapper">
       <nav>
-        <p>Bingo Bites</p>
+        <p id="site-title">Bingo Bites</p>
         <Authenticated>
           <UserButton />
         </Authenticated>
