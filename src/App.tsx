@@ -137,7 +137,7 @@ function Content() {
     // Create the new restaurants state object
     const newRestaurants = [...restaurants];
     const currentIndex = activeRestaurant?.index;
-    if (!currentIndex) {
+    if (currentIndex === undefined) {
       throw new Error("Current Index is not defined");
     }
     newRestaurants[currentIndex].visited = true;
