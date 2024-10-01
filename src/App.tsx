@@ -48,31 +48,32 @@ function SignedIn() {
   // check if the current user has an existing board
   // if they don't, create one for them
   const board = useQuery(api.boards.getBoardForCurrentUser)
-  console.log("board", board)
-  console.log("board.restaurants", board?.restaurants)
+  console.log("board after useQuery", board)
 
   const [restaurants, setRestaurants] = useState(board?.restaurants)
 
   // Create a new board if the user doesn't have one in the database yet
   useEffect(() => {
     const createBoard = async () => {
+      console.log("inside createBoard()")
       if (board === null) {
+        console.log("about to call createBoardForCurrentUser (Convex function)")
         await createBoardForCurrentUser({ restaurants: restaurantList })
       }
     }
 
+    console.log("inside useEffect to create board")
     createBoard()
       .catch(error => console.log("ERROR:", error))
-  })
+  }, [board])
 
   // Update the restaurants in state based on the board,
   // to trigger a rerender when the board changes
   useEffect(() => {
-    console.log("board", board?._id)
+    console.log("inside useEffect for board changes")
     setRestaurants(board?.restaurants)
   }, [board])
 
-  console.log("restaurants before early return", restaurants)
   
   if (!board || !restaurants) {
     return <LoadingPlaceholder />
