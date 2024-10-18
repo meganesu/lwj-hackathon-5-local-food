@@ -104,23 +104,17 @@ function Content() {
   // Create a new board if the user doesn't have one in the database yet
   useEffect(() => {
     const createBoard = async () => {
-      console.log("inside createBoard()");
       if (board === null) {
-        console.log(
-          "about to call createBoardForCurrentUser (Convex function)"
-        );
         await createBoardForCurrentUser({ restaurants: restaurantList });
       }
     };
 
-    console.log("inside useEffect to create board");
     createBoard().catch((error) => console.log("ERROR:", error));
   }, [board]);
 
   // Update the restaurants in state based on the board,
   // to trigger a rerender when the board changes
   useEffect(() => {
-    console.log("inside useEffect for board changes");
     setRestaurants(board?.restaurants);
   }, [board]);
 
@@ -129,7 +123,6 @@ function Content() {
   }
 
   const updateDialog = (restaurantDetails: RestaurantDetails) => {
-    console.log("active restaurant", restaurantDetails)
     setActiveRestaurant(restaurantDetails);
     dialogRef?.current?.showModal();
   };
