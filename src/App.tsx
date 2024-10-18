@@ -139,6 +139,8 @@ function Content() {
       throw new Error("Active restaurant is not defined");
     }
 
+    dialogRef?.current?.close();
+
     // Create the new restaurants state object
     const newRestaurants = [...restaurants];
     const currentIndex = activeRestaurant?.index;
@@ -152,7 +154,6 @@ function Content() {
       restaurants: newRestaurants,
     });
 
-    dialogRef?.current?.close();
   };
 
   return (
