@@ -84,9 +84,11 @@ const LoadingPlaceholder = () => {
 };
 
 function Content() {
+  // local variables
   const dialogRef: React.RefObject<HTMLDialogElement> = useRef(null);
-  const [activeRestaurant, setActiveRestaurant] =
-    useState<RestaurantDetails | null>(null);
+
+  // convex functions
+  const board = useQuery(api.boards.getBoardForCurrentUser);
   const createBoardForCurrentUser = useMutation(
     api.boards.createBoardForCurrentUser
   );
@@ -94,33 +96,31 @@ function Content() {
     api.boards.updateRestaurantsForCurrentUser
   );
 
-  // check if the current user has an existing board
-  // if they don't, create one for them
-  const board = useQuery(api.boards.getBoardForCurrentUser);
-  console.log("board after useQuery", board);
-
+  // state
   const [restaurants, setRestaurants] = useState(board?.restaurants);
+  const [activeRestaurant, setActiveRestaurant] =
+    useState<RestaurantDetails | null>(null);
 
-  // Create a new board if the user doesn't have one in the database yet
+
   useEffect(() => {
     const createBoard = async () => {
-      if (board === null) {
-        await createBoardForCurrentUser({ restaurants: restaurantList });
-      }
+      await createBoardForCurrentUser({ restaurants: restaurantList });
     };
 
-    createBoard().catch((error) => console.log("ERROR:", error));
-  }, [board]);
+    if (board === null) {
+      createBoard().catch((error) => console.log("ERROR:", error));
+    }
 
-  // Update the restaurants in state based on the board,
-  // to trigger a rerender when the board changes
-  useEffect(() => {
     setRestaurants(board?.restaurants);
   }, [board]);
+
 
   if (!board || !restaurants) {
     return <LoadingPlaceholder />;
   }
+
+
+  // helper functions
 
   const updateDialog = (restaurantDetails: RestaurantDetails) => {
     setActiveRestaurant(restaurantDetails);
@@ -146,7 +146,6 @@ function Content() {
       boardId: board._id,
       restaurants: newRestaurants,
     });
-
   };
 
   return (
